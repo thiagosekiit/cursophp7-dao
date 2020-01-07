@@ -23,7 +23,9 @@ class Sql extends PDO{
 
 		$statement->bindParam($key, $value);
 
+		//var_dump($statement);
 	}
+
 
 	public function query($rawQuery, $params = array()){
 
