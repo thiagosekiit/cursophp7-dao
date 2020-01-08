@@ -123,7 +123,7 @@ class Usuario {
 		$this->setDessenha($data['dessenha']);
 		$this->setDtcadastro(new DateTime($data['dtcadastro']));
 
-		//var_dump($data);
+//var_dump($data);
 
 	}
 
