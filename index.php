@@ -61,11 +61,21 @@ $cliente->insert();
 echo $cliente;
 */
 
+/*
 $usuario = new Usuario();
 
 $usuario->loadById(2);
 
 $usuario->update("Sekiguchi", "445566");
+
+echo $usuario;
+*/
+
+$usuario = new Usuario();
+
+$usuario->loadById(2);
+
+$usuario->delete();
 
 echo $usuario;
 
