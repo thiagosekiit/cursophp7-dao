@@ -48,6 +48,7 @@ $aluno->insert();
 echo $aluno;
 */
 
+/*
 $cliente = new Cliente();
 
 $cliente->setNome("Ariane");
@@ -58,5 +59,14 @@ $cliente->insert();
 //var_dump($cliente);
 
 echo $cliente;
+*/
+
+$usuario = new Usuario();
+
+$usuario->loadById(2);
+
+$usuario->update("Sekiguchi", "445566");
+
+echo $usuario;
 
  ?>
