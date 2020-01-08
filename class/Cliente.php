@@ -68,15 +68,41 @@ class Cliente{
 
 		if(count($results) > 0){
 
-			$row = $results[0];
+			$this->setData($results[0]);
 
-			$this->setid($row['id']);
-			$this->setNome($row['nome']);
-			$this->setDocumento($row['documento']);
-			$this->setDtcadastro(new DateTime($row['dtCadastro']));
 		}
 
 	}
+
+	public function setData($data){
+
+		$this->setid($data['id']);
+		$this->setNome($data['nome']);
+		$this->setDocumento($data['documento']);
+		$this->setDtcadastro(new DateTime($data['dtCadastro']));
+
+	}
+
+
+	public function insert(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL sp_clientes_insert(:NOME, :DOCUMENTO)", array(
+
+			':NOME'=>$this->getNome(),
+			':DOCUMENTO'=>$this->getDocumento()
+
+		));
+
+		if(count($results) > 0){
+
+			$this->setData($results[0]);
+		}
+
+
+	}
+
 
 	public function __toString(){
 

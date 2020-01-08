@@ -8,7 +8,7 @@ class Usuario {
 	private $dtcadastro;
 
 	public function getIdusuario(){
-		
+
 		return $this->idUsuario;
 
 	}
@@ -63,15 +63,10 @@ class Usuario {
 			":ID"=>$id
 		));
 
-		//validação para ver se tem algum registro
+//validação para ver se tem algum registro
 		if(count($results) > 0){
 
-			$row = $results[0];
-
-			$this->setIdusuario($row['idUsuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 		}
 	}
@@ -84,6 +79,7 @@ class Usuario {
 
 	}
 
+
 	public static function search($login){
 
 		$sql = new Sql();
@@ -94,6 +90,7 @@ class Usuario {
 		));
 	}
 
+
 	public function login($login, $password){
 
 		$sql = new Sql();
@@ -103,15 +100,12 @@ class Usuario {
 			":PASSWORD"=>$password
 		));
 
-		//validação para ver se tem algum registro
+//validação para ver se tem algum registro
 		if(count($results) > 0){
 
 			$row = $results[0];
 
-			$this->setIdusuario($row['idUsuario']);
-			$this->setDeslogin($row['deslogin']);
-			$this->setDessenha($row['dessenha']);
-			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+			$this->setData($results[0]);
 
 		}else{
 
@@ -120,6 +114,40 @@ class Usuario {
 		}
 
 	}
+
+
+	public function setData($data){
+
+		$this->setIdusuario($data['idUsuario']);
+		$this->setDeslogin($data['deslogin']);
+		$this->setDessenha($data['dessenha']);
+		$this->setDtcadastro(new DateTime($data['dtcadastro']));
+
+		//var_dump($data);
+
+	}
+
+	public function insert(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("CALL sp_usuarios_insert(:LOGIN, :PASSWORD)", array(
+			':LOGIN'=>$this->getDeslogin(),
+			':PASSWORD'=>$this->getDessenha()
+
+		));
+
+		if(count($results) > 0){
+			$this->setData($results[0]);
+		}
+
+	}
+
+	public function __construct($login = "", $password = ""){
+		$this->setDeslogin($login);
+		$this->setDessenha($password);
+	}
+
 
 	public function __toString(){
 
@@ -136,4 +164,4 @@ class Usuario {
 }
 
 
- ?>
+?>

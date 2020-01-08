@@ -32,9 +32,31 @@ echo $cliente;
 
 //Carrega um usuario usando login e senha
 
-$usuario = new Usuario();
-$usuario->login("Thiago","123456");
+/*$usuario->login("Thiago","123456");
 
 echo $usuario;
+*/
+
+/*
+$aluno = new Usuario("aluno");
+
+$aluno->setDeslogin("aluno");
+$aluno->setDessenha("123456");
+
+$aluno->insert();
+
+echo $aluno;
+*/
+
+$cliente = new Cliente();
+
+$cliente->setNome("Ariane");
+$cliente->setDocumento("333.333.666-5");
+
+$cliente->insert();
+
+//var_dump($cliente);
+
+echo $cliente;
 
  ?>
